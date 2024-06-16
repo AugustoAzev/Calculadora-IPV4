@@ -3,7 +3,7 @@ public class Principal {
 
     public static void main(String [] args){
         //entre com um endereço de subrede
-        Subrede subrede = new Subrede(255, 254, 255, 255, 19);
+        Subrede subrede = new Subrede(255, 0, 0, 0, 8);
         //entre com um endereço de ip
         Endereco endereco = new Endereco(123, 100, 10, 80);
         //CLASSIFICAÇÃO
