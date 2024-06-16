@@ -5,10 +5,15 @@ public class Endereco {
     int octeto4;
 
     public Endereco(int octeto1, int octeto2, int octeto3, int octeto4){
-        this.octeto1 = octeto1;
-        this.octeto2 = octeto2;
-        this.octeto3 = octeto3;
-        this.octeto4 = octeto4;
+        if(octeto1 > 255 || octeto2 > 255 || octeto3 > 255 || octeto4 > 255){
+            System.out.println("Endereço de rede inválido!");
+        } else{
+            this.octeto1 = octeto1;
+            this.octeto2 = octeto2;
+            this.octeto3 = octeto3;
+            this.octeto4 = octeto4;
+            System.out.println("Endereço IP informado: "+octeto1+"."+octeto2+"."+octeto3+"."+octeto4);
+        }
     }
     public void enderecoDeRede(int octeto1, int octeto2, int octeto3, int octeto4){
         System.out.println();
