@@ -10,22 +10,6 @@ public class Endereco {
         this.octeto3 = octeto3;
         this.octeto4 = octeto4;
     }
-    public void verificaClasse(int octeto1){
-        if(octeto1 >= 1 && octeto1 <= 126){
-            System.out.println("Endereço de classe A");
-            System.out.println("Máscara 255.0.0.0");
-        } else if (octeto1 == 127) {
-            System.out.println("Endereço de Loopback");
-        } else if (octeto1 >= 128 && octeto1 <= 191) {
-            System.out.println("Endereço de classe B");
-            System.out.println("Máscara 255.255.0.0");
-        } else if (octeto1 >= 192 && octeto1 <= 223) {
-            System.out.println("Endereço de classe C");
-            System.out.println("Máscara 255.255.255.0");
-        } else{
-            System.out.println("Endereço inválido");
-        }
-    }
     public void enderecoDeRede(int octeto1, int octeto2, int octeto3, int octeto4){
         System.out.println();
         //verificar a classe e será o primeiro endereço Ex: 100.10.20.0

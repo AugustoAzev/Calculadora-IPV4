@@ -1,25 +1,23 @@
-import java.util.Scanner;
 
 public class Principal {
 
     public static void main(String [] args){
-        Scanner teclado = new Scanner(System.in);
+        //entre com um endereço de subrede
+        Subrede subrede = new Subrede(255, 255, 224, 0, 19);
         //entre com um endereço de ip
-        Endereco endereco = new Endereco(127, 100, 10, 80);
+        Endereco endereco = new Endereco(123, 100, 10, 80);
+        //CLASSIFICAÇÃO
+        endereco.enderecoDeRede(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
+        subrede.mascaraDeSubrede(subrede.mascara1, subrede.mascara2, subrede.mascara3, subrede.mascara4);
+        subrede.verificaClasse(subrede.bits);
+        subrede.numeroDeHost(subrede.bits);
 
-        endereco.verificaClasse(endereco.octeto1);
-
-        System.out.print("Representação binária: ");
+        System.out.print("Representação binária rede: ");
         endereco.transformaEmBinario(endereco.octeto1);
         endereco.transformaEmBinario(endereco.octeto2);
         endereco.transformaEmBinario(endereco.octeto3);
         endereco.transformaEmBinario(endereco.octeto4);
 
-        endereco.enderecoDeRede(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
-        //subredes
-        Subrede subrede = new Subrede();
-        subrede.bits = 24;
-        subrede.definirCidr(subrede.bits);
 
     }
 }
