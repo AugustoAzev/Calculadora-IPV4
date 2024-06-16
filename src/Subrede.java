@@ -30,8 +30,8 @@ public class Subrede {
     }
     public void numeroDeHost(int bits) {
         // 2^n - 2 onde n é a quantidade de bits para hosts - 2 de rede e broadcast
-        if (bits == 32) {
-            System.out.println("Nenhum host disponível!");
+        if (bits > 30) {
+            System.out.println("Hosts disponíveis: 0");
         } else {
             int zeros = 32 - bits;
             int hosts = (int) Math.pow(2, zeros) - 2;

@@ -15,6 +15,23 @@ public class Endereco {
             System.out.println("Endereço IP informado: "+octeto1+"."+octeto2+"."+octeto3+"."+octeto4);
         }
     }
+    public int verificaClasse(int octeto1){
+        if(octeto1 >= 1 && octeto1 <= 126){
+            //CLASSE A
+            return 1;
+        } else if (octeto1 == 127) {
+            //LOOPBACK
+            return 2;
+        } else if (octeto1 >= 128 && octeto1 <= 191) {
+            //CLASSE B
+            return 3;
+        } else if (octeto1 >= 192 && octeto1 <= 223) {
+            //CLASSE C
+            return 4;
+        } else{
+            return 0;
+        }
+    }
     public void enderecoDeRede(int octeto1, int octeto2, int octeto3, int octeto4){
         System.out.println();
         //verificar a classe e será o primeiro endereço Ex: 100.10.20.0
@@ -41,5 +58,27 @@ public class Endereco {
             System.out.print(bit);
         }
         System.out.print(" ");
+    }
+    public void enderecoValidoEBroadcast(int octeto1, int octeto2, int octeto3, int octeto4){
+        int classe = verificaClasse(octeto1);
+        if (classe == 1){
+            octeto2 = 0;
+            octeto3 = 0;
+            octeto4 = 1;
+            System.out.println("Primeiro endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else if (classe == 2) {
+            octeto3 = 0;
+            octeto4 = 1;
+            System.out.println("Primeiro endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else if (classe == 3) {
+            octeto3 = 0;
+            octeto4 = 1;
+            System.out.println("Primeiro endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else if (classe == 4) {
+            octeto4 = 1;
+            System.out.println("Primeiro endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else {
+            System.out.println("Endereço inválido!");
+        }
     }
 }
