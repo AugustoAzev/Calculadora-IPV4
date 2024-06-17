@@ -15,6 +15,21 @@ public class Endereco {
             System.out.println("Endereço IP informado: "+octeto1+"."+octeto2+"."+octeto3+"."+octeto4);
         }
     }
+    public void classeEndereco(int octeto1){
+        int classe = verificaClasse(octeto1);
+
+        if (classe == 1){
+            System.out.println("Endereço de classe A");
+        } else if (classe == 2) {
+            System.out.println("Endereço de loopback");
+        } else if (classe == 3) {
+            System.out.println("Endereço de classe B");
+        } else if (classe == 4) {
+            System.out.println("Endereço de classe C");
+        } else {
+            System.out.println("Endereço inválido!");
+        }
+    }
     public int verificaClasse(int octeto1){
         if(octeto1 >= 1 && octeto1 <= 126){
             //CLASSE A
@@ -59,7 +74,7 @@ public class Endereco {
         }
         System.out.print(" ");
     }
-    public void enderecoValidoEBroadcast(int octeto1, int octeto2, int octeto3, int octeto4){
+    public void primeiroEnderecoValido(int octeto1, int octeto2, int octeto3, int octeto4){
         int classe = verificaClasse(octeto1);
         if (classe == 1){
             octeto2 = 0;
@@ -67,8 +82,7 @@ public class Endereco {
             octeto4 = 1;
             System.out.println("Primeiro endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
         } else if (classe == 2) {
-            octeto3 = 0;
-            octeto4 = 1;
+            System.out.println("Primeiro endereço válido: endereço de loopback");
             System.out.println("Primeiro endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
         } else if (classe == 3) {
             octeto3 = 0;
@@ -77,6 +91,26 @@ public class Endereco {
         } else if (classe == 4) {
             octeto4 = 1;
             System.out.println("Primeiro endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else {
+            System.out.println("Endereço inválido!");
+        }
+    }
+    public void ultimoEnderecoValido(int octeto1, int octeto2, int octeto3, int octeto4){
+        int classe = verificaClasse(octeto1);
+        if (classe == 1){
+            octeto2 = 255;
+            octeto3 = 255;
+            octeto4 = 254;
+            System.out.println("Último endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else if (classe == 2) {
+            System.out.println("Último endereço válido: endereço de loopback");
+        } else if (classe == 3) {
+            octeto3 = 255;
+            octeto4 = 254;
+            System.out.println("Último endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else if (classe == 4) {
+            octeto4 = 254;
+            System.out.println("Último endereço válido: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
         } else {
             System.out.println("Endereço inválido!");
         }

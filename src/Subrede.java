@@ -16,7 +16,7 @@ public class Subrede {
     public void mascaraDeSubrede(int mascara1, int mascara2, int mascara3, int mascara4){
         System.out.println("Mascara de Subrede: "+mascara1+"."+mascara2+"."+mascara3+"."+mascara4);
     }
-    public void verificaClasseMascara(int mascara1, int mascara2, int mascara3, int mascara4){
+    public void classeMascara(int mascara1, int mascara2, int mascara3, int mascara4){
         //Essa verificação é com os octetos da mascara
         if(mascara1 <= 255 && mascara2 <= 254){
             System.out.println("Máscara de classe: A");

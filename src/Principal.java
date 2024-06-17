@@ -8,9 +8,11 @@ public class Principal {
         Endereco endereco = new Endereco(130, 100, 10, 80);
         //CLASSIFICAÇÃO
         endereco.enderecoDeRede(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
-        endereco.enderecoValidoEBroadcast(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
+        endereco.classeEndereco(endereco.octeto1);
+        endereco.primeiroEnderecoValido(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
+        endereco.ultimoEnderecoValido(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
         subrede.mascaraDeSubrede(subrede.mascara1, subrede.mascara2, subrede.mascara3, subrede.mascara4);
-        subrede.verificaClasseMascara(subrede.mascara1, subrede.mascara2, subrede.mascara3, subrede.mascara4);
+        subrede.classeMascara(subrede.mascara1, subrede.mascara2, subrede.mascara3, subrede.mascara4);
         subrede.numeroDeHost(subrede.bits);
 
         System.out.print("Representação binária do IP: ");
