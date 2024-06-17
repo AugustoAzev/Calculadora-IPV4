@@ -13,21 +13,22 @@ public class Endereco {
             this.octeto3 = octeto3;
             this.octeto4 = octeto4;
             System.out.println("Endereço IP informado: "+octeto1+"."+octeto2+"."+octeto3+"."+octeto4);
+            System.out.println();
         }
     }
     public void classeEndereco(int octeto1){
         int classe = verificaClasse(octeto1);
 
         if (classe == 1){
-            System.out.println("Endereço de classe A");
+            System.out.print("Endereço de classe: A");
         } else if (classe == 2) {
-            System.out.println("Endereço de loopback");
+            System.out.print("Endereço de loopback");
         } else if (classe == 3) {
-            System.out.println("Endereço de classe B");
+            System.out.print("Endereço de classe: B");
         } else if (classe == 4) {
-            System.out.println("Endereço de classe C");
+            System.out.print("Endereço de classe: C");
         } else {
-            System.out.println("Endereço inválido!");
+            System.out.print("Endereço inválido!");
         }
     }
     public int verificaClasse(int octeto1){
@@ -62,7 +63,7 @@ public class Endereco {
             System.out.println("Endereço inválido");
         }
     }
-    public void transformaEmBinario(int octeto) {
+    public void enderecoEmBinario(int octeto) {
         int[] binario = new int[8];
         // Preenche o array binário com a representação do octeto
         for (int i = 7; i >= 0; i--) {

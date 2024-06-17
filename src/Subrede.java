@@ -36,6 +36,27 @@ public class Subrede {
             int zeros = 32 - bits;
             int hosts = (int) Math.pow(2, zeros) - 2;
             System.out.println("Hosts disponíveis: " + hosts);
+            int totalHosts = hosts + 2;
+            System.out.println("Total de hosts: " + totalHosts);
         }
+    }
+    public void cIDR(int bits){
+        if (bits > 32) {
+            System.out.println("CIDR: Inválido");
+        }else{
+            System.out.println("Notação CIDR:/"+bits);
+        }
+    }
+    public void mascaraEmBinario(int octeto) {
+        int[] binario = new int[8];
+        // Preenche o array binário com a representação do octeto
+        for (int i = 7; i >= 0; i--) {
+            binario[i] = (octeto & 1);
+            octeto >>= 1;
+        }
+        for (int bit : binario) {
+            System.out.print(bit);
+        }
+        System.out.print(" ");
     }
 }
