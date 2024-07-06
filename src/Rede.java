@@ -138,10 +138,10 @@ public class Rede {
         }
     }
     //VERIFICA A MÁSCARA DO ENDEREÇO INFORMADO
-    public void classeMascara(int bits){
+    public void mascaraDaRede(int bits){
             // Validação de entrada
             if (bits < 1 || bits > 32) {
-                System.out.println("Número de bits inválido. Deve ser entre 1 e 32.");
+                System.out.println("Máscara da rede: nenhuma subrede informada");
                 return;
             }
             // Variáveis para armazenar os octetos da máscara
