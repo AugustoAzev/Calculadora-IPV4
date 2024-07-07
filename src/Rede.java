@@ -242,4 +242,20 @@ public class Rede {
 
         System.out.println("Último endereço de rede: " + broadcast[0] + "." + broadcast[1] + "." + broadcast[2] + "." + broadcast[3]);
     }
+// VERIFICA SE O ENDEREÇO É PÚBLICO, PRIVADO OU ESPECIAL
+    public void verificarTipoDeEndereco(int octeto1, int octeto2, int octeto3, int octeto4) {
+        if ((octeto1 == 10) ||
+            (octeto1 == 172 && (octeto2 >= 16 && octeto2 <= 31)) ||
+            (octeto1 == 192 && octeto2 == 168)) {
+            System.out.println("Endereço Privado");
+        } else if (octeto1 == 127) {
+            System.out.println("Endereço Especial: Loopback");
+        } else if ((octeto1 >= 224 && octeto1 <= 239)) {
+            System.out.println("Endereço Especial: Multicast");
+        } else if ((octeto1 >= 240 && octeto1 <= 255)) {
+            System.out.println("Endereço Especial: Reservado");
+        } else {
+            System.out.println("Endereço Público");
+        }
+    }
 }
