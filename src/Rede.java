@@ -223,4 +223,23 @@ public class Rede {
             System.out.println("Máscara de classe: D");
         }
     }
+    // VERIFICA O ÚLTIMO ENDEREÇO DE REDE
+    public void ultimoEndereco(int octeto1, int octeto2, int octeto3, int octeto4, int bits) {
+        int[] ip = {octeto1, octeto2, octeto3, octeto4};
+        int hostBits = 32 - bits;
+        int[] broadcast = new int[4];
+
+        for (int i = 0; i < 4; i++) {
+            if (hostBits > 8) {
+                broadcast[i] = ip[i] | (255 >> 0);
+                hostBits -= 8;
+            } else {
+                broadcast[i] = ip[i] | (255 >> hostBits);
+                break;
+            }
+        }
+        broadcast[3]--;
+
+        System.out.println("Último endereço de rede: " + broadcast[0] + "." + broadcast[1] + "." + broadcast[2] + "." + broadcast[3]);
+    }
 }
