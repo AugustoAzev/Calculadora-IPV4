@@ -247,7 +247,7 @@ public class Rede {
         if ((octeto1 == 10) ||
             (octeto1 == 172 && (octeto2 >= 16 && octeto2 <= 31)) ||
             (octeto1 == 192 && octeto2 == 168)) {
-            System.out.println("Endereço Privado");
+            System.out.println("Endereço: Privado");
         } else if (octeto1 == 127) {
             System.out.println("Endereço Especial: Loopback");
         } else if ((octeto1 >= 224 && octeto1 <= 239)) {
@@ -255,7 +255,7 @@ public class Rede {
         } else if ((octeto1 >= 240 && octeto1 <= 255)) {
             System.out.println("Endereço Especial: Reservado");
         } else {
-            System.out.println("Endereço Público");
+            System.out.println("Endereço: Público");
         }
     }
 }
