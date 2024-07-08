@@ -238,10 +238,21 @@ public class Rede {
                 break;
             }
         }
-        broadcast[3]--;
+
+    // Subtrair 1 do último octeto do endereço de broadcast para obter o último endereço válido
+        if (hostBits <= 8) {
+            broadcast[3] -= 1;
+        } else if (hostBits <= 16) {
+            broadcast[2] -= 1;
+        } else if (hostBits <= 24) {
+            broadcast[1] -= 1;
+        } else {
+            broadcast[0] -= 1;
+        }
 
         System.out.println("Último endereço de rede: " + broadcast[0] + "." + broadcast[1] + "." + broadcast[2] + "." + broadcast[3]);
     }
+
 // VERIFICA SE O ENDEREÇO É PÚBLICO, PRIVADO OU ESPECIAL
     public void verificarTipoDeEndereco(int octeto1, int octeto2, int octeto3, int octeto4) {
         if ((octeto1 == 10) ||
