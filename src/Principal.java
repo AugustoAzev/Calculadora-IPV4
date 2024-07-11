@@ -1,5 +1,5 @@
 
-public class Main {
+public class Principal {
 
     public static void main(String [] args){
         //entre com um endereço de ip
@@ -15,7 +15,6 @@ public class Main {
         endereco.numeroDeHost(endereco.bits);
         endereco.cIDR(endereco.bits);
         endereco.verificarTipoDeEndereco(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
-        //falta o metodo que diz se o endereço é público ou privado
 
         System.out.print("Representação binária da máscara: ");
         endereco.mascaraEmBinario(endereco.bits);
