@@ -78,7 +78,7 @@ public class Rede {
         } else if (octeto1 >= 192 && octeto1 <= 223) {
             System.out.println("Endereço de rede: " + octeto1 + "."+ octeto2 +"."+ octeto3 +".0");
         } else{
-            System.out.println("Endereço inválido");
+            System.out.println("Endereço inválido!");
         }
     }
     //ENDEREÇO EM BINÁRIO
@@ -225,32 +225,24 @@ public class Rede {
     }
     // VERIFICA O ÚLTIMO ENDEREÇO DE REDE
     public void ultimoEndereco(int octeto1, int octeto2, int octeto3, int octeto4, int bits) {
-        int[] ip = {octeto1, octeto2, octeto3, octeto4};
-        int hostBits = 32 - bits;
-        int[] broadcast = new int[4];
-
-        for (int i = 0; i < 4; i++) {
-            if (hostBits > 8) {
-                broadcast[i] = ip[i] | (255 >> 0);
-                hostBits -= 8;
-            } else {
-                broadcast[i] = ip[i] | (255 >> hostBits);
-                break;
-            }
-        }
-
-    // Subtrair 1 do último octeto do endereço de broadcast para obter o último endereço válido
-        if (hostBits <= 8) {
-            broadcast[3] -= 1;
-        } else if (hostBits <= 16) {
-            broadcast[2] -= 1;
-        } else if (hostBits <= 24) {
-            broadcast[1] -= 1;
+        int classe = verificaClasse(octeto1);
+        if (classe == 1){
+            octeto2 = 255;
+            octeto3 = 255;
+            octeto4 = 255;
+            System.out.println("Endereço de broadcast: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else if (classe == 2) {
+            System.out.println("Endereço de broadcast: endereço de loopback");
+        } else if (classe == 3) {
+            octeto3 = 255;
+            octeto4 = 255;
+            System.out.println("Endereço de broadcast: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
+        } else if (classe == 4) {
+            octeto4 = 255;
+            System.out.println("Endereço de broadcast: "+ octeto1 + "." + octeto2 + "." + octeto3 + "." + octeto4);
         } else {
-            broadcast[0] -= 1;
+            System.out.println("Endereço inválido!");
         }
-
-        System.out.println("Último endereço de rede: " + broadcast[0] + "." + broadcast[1] + "." + broadcast[2] + "." + broadcast[3]);
     }
 
 // VERIFICA SE O ENDEREÇO É PÚBLICO, PRIVADO OU ESPECIAL
