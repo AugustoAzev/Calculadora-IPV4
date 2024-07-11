@@ -1,8 +1,12 @@
+import java.util.Scanner;
 
 public class Principal {
 
     public static void main(String [] args){
+        Scanner teclado = new Scanner(System.in);
         //entre com um endereço de ip
+        System.out.println("Entre com um endereço IP. Ex: 120.168.0.0/24...");
+        /*
         Rede endereco = new Rede(120, 100, 100, 80, 24);
         //CLASSIFICAÇÃO
         endereco.classeEndereco(endereco.octeto1);
@@ -25,5 +29,7 @@ public class Principal {
         endereco.enderecoEmBinario(endereco.octeto3);
         endereco.enderecoEmBinario(endereco.octeto4);
         System.out.println();
+
+         */
     }
 }
