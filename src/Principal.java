@@ -4,10 +4,21 @@ public class Principal {
 
     public static void main(String [] args){
         Scanner teclado = new Scanner(System.in);
-        //entre com um endereço de ip
-        System.out.println("Entre com um endereço IP. Ex: 120.168.0.0/24...");
-        /*
-        Rede endereco = new Rede(120, 100, 100, 80, 24);
+        // Solicita ao usuário que entre com um endereço IP
+        System.out.println("Entre com um endereço IP no formato 192.168.0.0/24:");
+        String ipComMascara = teclado.nextLine();
+
+        String[] partes = ipComMascara.split("/");
+        String enderecoIP = partes[0];
+        int bits = Integer.parseInt(partes[1]);
+
+        String[] octetos = enderecoIP.split("\\.");
+        int octeto1 = Integer.parseInt(octetos[0]);
+        int octeto2 = Integer.parseInt(octetos[1]);
+        int octeto3 = Integer.parseInt(octetos[2]);
+        int octeto4 = Integer.parseInt(octetos[3]);
+
+        Rede endereco = new Rede(octeto1, octeto2, octeto3, octeto4, bits);
         //CLASSIFICAÇÃO
         endereco.classeEndereco(endereco.octeto1);
         endereco.enderecoDeRede(endereco.octeto1, endereco.octeto2, endereco.octeto3, endereco.octeto4);
@@ -30,6 +41,5 @@ public class Principal {
         endereco.enderecoEmBinario(endereco.octeto4);
         System.out.println();
 
-         */
     }
 }
