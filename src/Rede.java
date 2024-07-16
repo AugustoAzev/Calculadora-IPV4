@@ -262,32 +262,19 @@ public class Rede {
         }
     }
     //METODO DE ULTIMA HORA PARA VERIFICAR SE A CLASSE É VALIDO (EVITAR TERMINAL BUGADO)
-    public int confirmaClasse(){
-            if(octeto1 > 255){
-                //invalido
-                return 0;
-            } else if (octeto2 > 255) {
-                //invalido
-                return 0;
-            } else if (octeto3 > 255) {
-                //invalido
-                return 0;
-            } else if (octeto4 > 255) {
-                //invalido
-                return 0;
-            } else{
-                return 1; //valido
-            }
+    public int confirmaClasse() {
+        if (octeto1 > 255 || octeto2 > 255 || octeto3 > 255 || octeto4 > 255) {
+            return 0; // inválido
+        }
+        return 1; // válido
     }
     //os bits precisam ser maiores que 24 para rolar
-    public void intervalosHost(int bits){
+    public void intervalosHost(int bits) {
         int confirma = confirmaClasse();
 
-        if (bits > 30) {
+        if (bits > 30 || confirma == 0) {
             System.out.println("Endereço inválido!");
-        } else if(confirma == 0){
-            System.out.println("Endereço inválido!");
-        } else if(bits < 24){
+        } else if (bits < 24) {
             System.out.println("Intervalos somente para > 23 bits ou endereço inválido!");
         } else {
             int zeros = 32 - bits;
@@ -297,22 +284,25 @@ public class Rede {
 
             if (classe == 2) {
                 System.out.println("Endereço de loopback! Sem intervalos!");
-            }
-            else{
+            } else {
                 int variacao = 0;
-                for(int i = 0; i < 10; i++){
-                    System.out.print(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao+"  -  ");
-                    variacao = variacao + 1;
-                    System.out.print(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao+"  -  ");
-                    variacao = variacao + intervalo;
-                    variacao = variacao - 1;
-                    System.out.print(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao+"  -  ");
-                    variacao = variacao + 1;
-                    System.out.println(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao);
-                    variacao = variacao + 1;
+                while (variacao < 256) {
+                    System.out.print(this.octeto1 + "." + this.octeto2 + "." + this.octeto3 + "." + variacao + "  -  ");
+                    variacao += 1;
+                    System.out.print(this.octeto1 + "." + this.octeto2 + "." + this.octeto3 + "." + variacao + "  -  ");
+                    variacao += intervalo;
+                    variacao -= 1;
+                    System.out.print(this.octeto1 + "." + this.octeto2 + "." + this.octeto3 + "." + variacao + "  -  ");
+                    variacao += 1;
+                    System.out.println(this.octeto1 + "." + this.octeto2 + "." + this.octeto3 + "." + variacao);
+                    variacao += 1;
+
+                    // Se a variação ultrapassar 255, interrompe o loop
+                    if (variacao > 255) break;
                 }
             }
         }
-
     }
+
+
 }

@@ -41,7 +41,7 @@ public class Principal {
         endereco.enderecoEmBinario(endereco.octeto4);
         System.out.println();
 
-        System.out.println("Intervalos para máscaras de classe C:");
+        System.out.println("Intervalos:");
         endereco.intervalosHost(endereco.bits);
     }
 }
