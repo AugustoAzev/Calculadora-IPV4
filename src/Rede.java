@@ -166,15 +166,16 @@ public class Rede {
     }
     //VERIFICA A QUANTIDADE DE HOST E QUANTOS ESTÃO DISPONIVEIS
     public void numeroDeHost(int bits) {
-        // 2^n - 2 onde n é a quantidade de bits para hosts - 2 de rede e broadcast
+        //2^n - 2 onde n é a quantidade de bits para hosts - 2 de rede e broadcast
         if (bits > 30) {
             System.out.println("Hosts disponíveis: 0");
         } else {
             int zeros = 32 - bits;
             int hosts = (int) Math.pow(2, zeros) - 2;
-            System.out.println("Hosts disponíveis: " + hosts);
             int totalHosts = hosts + 2;
             System.out.println("Total de hosts: " + totalHosts);
+            System.out.println("Hosts disponíveis: " + hosts);
+
         }
     }
     //DEFINE A NOTAÇÃO CIDR
@@ -212,18 +213,18 @@ public class Rede {
             System.out.println("Número de bits inválido. Deve ser entre 0 e 32.");
             return;
         }
-        if(bits <= 8){
+        if(bits > 0 && bits < 7){
             System.out.println("Máscara de classe: A");
-        } else if (bits <= 16) {
+        } else if (bits > 8 && bits < 17) {
             System.out.println("Máscara de classe: B");
         }
-        else if (bits <= 24) {
+        else if (bits > 16 && bits < 25) {
             System.out.println("Máscara de classe: C");
         }else{
-            System.out.println("Máscara de classe: D");
+            System.out.println("Máscara de classe: Multicast ou utilização futura (D ou E)");
         }
     }
-    // VERIFICA O ÚLTIMO ENDEREÇO DE REDE
+    //VERIFICA O ÚLTIMO ENDEREÇO DE REDE
     public void ultimoEndereco(int octeto1, int octeto2, int octeto3, int octeto4, int bits) {
         int classe = verificaClasse(octeto1);
         if (classe == 1){
@@ -244,8 +245,7 @@ public class Rede {
             System.out.println("Endereço inválido!");
         }
     }
-
-// VERIFICA SE O ENDEREÇO É PÚBLICO, PRIVADO OU ESPECIAL
+    //VERIFICA SE O ENDEREÇO É PÚBLICO, PRIVADO OU ESPECIAL
     public void verificarTipoDeEndereco(int octeto1, int octeto2, int octeto3, int octeto4) {
         if ((octeto1 == 10) ||
             (octeto1 == 172 && (octeto2 >= 16 && octeto2 <= 31)) ||
@@ -260,5 +260,59 @@ public class Rede {
         } else {
             System.out.println("Endereço: Público");
         }
+    }
+    //METODO DE ULTIMA HORA PARA VERIFICAR SE A CLASSE É VALIDO (EVITAR TERMINAL BUGADO)
+    public int confirmaClasse(){
+            if(octeto1 > 255){
+                //invalido
+                return 0;
+            } else if (octeto2 > 255) {
+                //invalido
+                return 0;
+            } else if (octeto3 > 255) {
+                //invalido
+                return 0;
+            } else if (octeto4 > 255) {
+                //invalido
+                return 0;
+            } else{
+                return 1; //valido
+            }
+    }
+    //os bits precisam ser maiores que 24 para rolar
+    public void intervalosHost(int bits){
+        int confirma = confirmaClasse();
+
+        if (bits > 30) {
+            System.out.println("Endereço inválido!");
+        } else if(confirma == 0){
+            System.out.println("Endereço inválido!");
+        } else if(bits < 24){
+            System.out.println("Intervalos somente para > 23 bits ou endereço inválido!");
+        } else {
+            int zeros = 32 - bits;
+            int intervalo = (int) Math.pow(2, zeros) - 2;
+
+            int classe = verificaClasse(this.octeto1);
+
+            if (classe == 2) {
+                System.out.println("Endereço de loopback! Sem intervalos!");
+            }
+            else{
+                int variacao = 0;
+                for(int i = 0; i < 10; i++){
+                    System.out.print(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao+"  -  ");
+                    variacao = variacao + 1;
+                    System.out.print(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao+"  -  ");
+                    variacao = variacao + intervalo;
+                    variacao = variacao - 1;
+                    System.out.print(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao+"  -  ");
+                    variacao = variacao + 1;
+                    System.out.println(this.octeto1+"."+this.octeto2+"."+this.octeto3+"."+variacao);
+                    variacao = variacao + 1;
+                }
+            }
+        }
+
     }
 }
